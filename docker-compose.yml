@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis
+    container_name: redis-session
+    restart: always
+    ports:
+      - "6379:6379"
+    labels:
+      - demo-rate-limiter
+    networks:
+      - demo
+
+  k6:
+    image: grafana/k6:latest
+    networks:
+      - demo
+    ports:
+      - "6565:6565"
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+    volumes:
+      - ./samples:/scripts
+
+networks:
+  demo:
+    name: demo
+    driver: bridge
