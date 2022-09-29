@@ -79,7 +79,7 @@ Key Resolver example that uses the route id:
     }
 ```
 
-To consider rates calculated across all the api gateway instances, the data needs to be stored.
+To consider rates calculated across all the api gateway instances, the data used by the rating algorithm needs to be stored in a centralized data store.
 An available [implementation](https://cloud.spring.io/spring-cloud-gateway/reference/html/#the-redis-ratelimiter) is the token bucket algorithm with Redis for storage.
 
 Steps to integrate redis rate limiting:
